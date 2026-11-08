@@ -7,7 +7,7 @@ enum Settings {
     static let minRadius: Double = 4
     static let maxRadius: Double = 40
 
-    static let repoURL = URL(string: "https://github.com/YOUR_GITHUB_USER/screen-corners")!
+    static let repoURL = URL(string: "https://github.com/PankovDefi/screen-corners")!
 
     private static var store: UserDefaults { .standard }
 

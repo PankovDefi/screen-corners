@@ -31,7 +31,7 @@
 Откройте **Терминал** и выполните:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/screen-corners/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/PankovDefi/screen-corners/main/install.sh | bash
 ```
 
 Установщик скачает исходники, соберёт приложение, скопирует его в «Программы», включит автозапуск и запустит. В строке меню появится иконка.
@@ -40,10 +40,10 @@ curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/screen-corners/mai
 
 ```bash
 # сразу задать радиус (в точках, по умолчанию 15)
-curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/screen-corners/main/install.sh | bash -s -- --radius 15
+curl -fsSL https://raw.githubusercontent.com/PankovDefi/screen-corners/main/install.sh | bash -s -- --radius 15
 
 # без автозапуска
-curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/screen-corners/main/install.sh | bash -s -- --no-autostart
+curl -fsSL https://raw.githubusercontent.com/PankovDefi/screen-corners/main/install.sh | bash -s -- --no-autostart
 ```
 
 **Что нужно:** macOS 13 Ventura или новее и Xcode Command Line Tools (нужны для сборки). Если их нет, установщик откроет окно установки Apple. Дождитесь, пока она закончится, и запустите команду ещё раз. Полный Xcode не нужен.
@@ -89,7 +89,7 @@ pkill -x ScreenCorners; open -a ScreenCorners
 ## Удаление
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/screen-corners/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/PankovDefi/screen-corners/main/uninstall.sh | bash
 ```
 
 Команда удалит приложение, службу автозапуска и настройки.
@@ -97,7 +97,7 @@ curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/screen-corners/mai
 ## Сборка из исходников
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USER/screen-corners.git
+git clone https://github.com/PankovDefi/screen-corners.git
 cd screen-corners
 ./scripts/build.sh              # → build/ScreenCorners.app
 open build/ScreenCorners.app    # попробовать без установки

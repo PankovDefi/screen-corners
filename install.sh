@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 # Screen Corners installer.
 #
-#   curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/screen-corners/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/PankovDefi/screen-corners/main/install.sh | bash
 #   curl -fsSL .../install.sh | bash -s -- --radius 15 --no-autostart
 #
 # Or from a cloned repo: ./install.sh [--radius N] [--no-autostart]
 set -euo pipefail
 
-REPO="${SCREEN_CORNERS_REPO:-YOUR_GITHUB_USER/screen-corners}"
+REPO="${SCREEN_CORNERS_REPO:-PankovDefi/screen-corners}"
 BRANCH="${SCREEN_CORNERS_BRANCH:-main}"
 APP_NAME="ScreenCorners.app"
 BUNDLE_ID="com.screencorners.app"

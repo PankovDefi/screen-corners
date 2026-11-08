@@ -31,7 +31,7 @@ On M‑series MacBooks the display has rounded corners at the **top** but square
 Open **Terminal** and run:
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/screen-corners/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/PankovDefi/screen-corners/main/install.sh | bash
 ```
 
 The installer downloads the source, builds the app, copies it to `/Applications`, turns on launch at login and starts it. An icon appears in the menu bar.
@@ -40,10 +40,10 @@ Options:
 
 ```bash
 # set the radius right away (points, default 15)
-curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/screen-corners/main/install.sh | bash -s -- --radius 15
+curl -fsSL https://raw.githubusercontent.com/PankovDefi/screen-corners/main/install.sh | bash -s -- --radius 15
 
 # don't launch at login
-curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/screen-corners/main/install.sh | bash -s -- --no-autostart
+curl -fsSL https://raw.githubusercontent.com/PankovDefi/screen-corners/main/install.sh | bash -s -- --no-autostart
 ```
 
 **Requirements:** macOS 13 Ventura or later, plus Xcode Command Line Tools (needed to build). If they're missing, the installer opens Apple's installer window. Wait for it to finish, then run the command again. The full Xcode app isn't required.
@@ -89,7 +89,7 @@ pkill -x ScreenCorners; open -a ScreenCorners
 ## Uninstall
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/screen-corners/main/uninstall.sh | bash
+curl -fsSL https://raw.githubusercontent.com/PankovDefi/screen-corners/main/uninstall.sh | bash
 ```
 
 This removes the app, the launch agent and the settings.
@@ -97,7 +97,7 @@ This removes the app, the launch agent and the settings.
 ## Build from source
 
 ```bash
-git clone https://github.com/YOUR_GITHUB_USER/screen-corners.git
+git clone https://github.com/PankovDefi/screen-corners.git
 cd screen-corners
 ./scripts/build.sh              # → build/ScreenCorners.app
 open build/ScreenCorners.app    # try it without installing

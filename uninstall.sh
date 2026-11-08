@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # Removes Screen Corners, its launch agent and settings.
-#   curl -fsSL https://raw.githubusercontent.com/YOUR_GITHUB_USER/screen-corners/main/uninstall.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/PankovDefi/screen-corners/main/uninstall.sh | bash
 set -euo pipefail
 
 BUNDLE_ID="com.screencorners.app"
