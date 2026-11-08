@@ -72,7 +72,7 @@ final class OverlayManager {
         w.collectionBehavior = [.canJoinAllSpaces, .stationary, .ignoresCycle, .fullScreenAuxiliary]
         w.isExcludedFromWindowsMenu = true
         w.animationBehavior = .none
-        w.sharingType = .none                       // try to stay out of screenshots
+        w.sharingType = Settings.allowCapture ? .readOnly : .none   // stay out of screenshots by default
         w.contentView = CornerView(frame: NSRect(origin: .zero, size: rect.size), corner: corner)
         w.orderFrontRegardless()
         return w

@@ -19,6 +19,7 @@ struct ScreenCornersApp {
               defaults write \(AppInfo.bundleID) radius -float 15
               defaults write \(AppInfo.bundleID) topCorners -bool true
               defaults write \(AppInfo.bundleID) allDisplays -bool true
+              defaults write \(AppInfo.bundleID) allowCapture -bool true
             """)
             exit(0)
         }

@@ -15,6 +15,11 @@
 
 On M‑series MacBooks the display has rounded corners at the **top** but square corners at the **bottom**. macOS draws windows, the Dock and other UI with rounded corners everywhere, so the desktop wallpaper shows through in the bottom corners all the time.
 
+| Before | After |
+|:---:|:---:|
+| <img src="docs/before.png" alt="Before: wallpaper peeks out in the bottom corner"> | <img src="docs/after.png" alt="After: the bottom corner is rounded and black"> |
+| The wallpaper peeks out in the bottom corner | The corner is rounded, just like the top ones |
+
 **Screen Corners** draws two tiny black rounded masks in the bottom corners of the built-in display, so the screen looks evenly rounded all around.
 
 - Sits above every window, the Dock and full-screen apps, on every desktop (Space)
@@ -78,6 +83,7 @@ defaults write com.screencorners.app radius -float 15
 defaults write com.screencorners.app topCorners -bool true
 defaults write com.screencorners.app allDisplays -bool true
 defaults write com.screencorners.app hideIcon -bool false
+defaults write com.screencorners.app allowCapture -bool true   # show corners in screenshots
 ```
 
 Restart the app after changing settings this way:
@@ -113,7 +119,7 @@ Launch at login uses a regular per-user LaunchAgent (`~/Library/LaunchAgents/com
 ## FAQ
 
 **Do the corners show up in screenshots?**
-The windows ask macOS to keep them out of screen capture. Recent macOS versions may ignore that request, so full-screen screenshots can still show the small black corners.
+No, by default the corner windows are excluded from screenshots and screen recordings. To capture them (for example, to show a before/after), run `defaults write com.screencorners.app allowCapture -bool true` and restart the app.
 
 **Does it affect battery life?**
 No. The app draws four tiny static windows and then sleeps. It does no work until the display configuration changes.

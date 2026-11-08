@@ -5,6 +5,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     private var overlay: OverlayManager!
     private var statusItem: NSStatusItem!
 
+    private var radiusIcon: NSImageView!
     private var radiusLabel: NSTextField!
     private var radiusSlider: NSSlider!
     private var enabledItem: NSMenuItem!
@@ -62,21 +63,21 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         menu.addItem(header)
         menu.addItem(.separator())
 
-        enabledItem = addItem(to: menu, L10n.enabled, #selector(toggleEnabled))
+        enabledItem = addItem(to: menu, L10n.enabled, #selector(toggleEnabled), icon: "rectangle.roundedbottom")
         menu.addItem(makeSliderItem())
-        addItem(to: menu, L10n.resetRadius(Settings.defaultRadius), #selector(resetRadius))
+        addItem(to: menu, L10n.resetRadius(Settings.defaultRadius), #selector(resetRadius), icon: "arrow.counterclockwise")
         menu.addItem(.separator())
 
-        topItem = addItem(to: menu, L10n.topCorners, #selector(toggleTop))
-        displaysItem = addItem(to: menu, L10n.allDisplays, #selector(toggleDisplays))
+        topItem = addItem(to: menu, L10n.topCorners, #selector(toggleTop), icon: "rectangle.roundedtop")
+        displaysItem = addItem(to: menu, L10n.allDisplays, #selector(toggleDisplays), icon: "display.2")
         menu.addItem(.separator())
 
-        loginItem = addItem(to: menu, L10n.launchAtLogin, #selector(toggleLogin))
-        addItem(to: menu, L10n.hideIcon, #selector(hideIcon))
+        loginItem = addItem(to: menu, L10n.launchAtLogin, #selector(toggleLogin), icon: "clock.arrow.circlepath")
+        addItem(to: menu, L10n.hideIcon, #selector(hideIcon), icon: "eye.slash")
         menu.addItem(.separator())
 
-        addItem(to: menu, L10n.github, #selector(openGitHub))
-        addItem(to: menu, L10n.quit, #selector(quit), key: "q")
+        addItem(to: menu, L10n.github, #selector(openGitHub), icon: "chevron.left.forwardslash.chevron.right")
+        addItem(to: menu, L10n.quit, #selector(quit), key: "q", icon: "power")
 
         statusItem.menu = menu
         statusItem.isVisible = !Settings.hideIcon
@@ -84,27 +85,44 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
     }
 
     @discardableResult
-    private func addItem(to menu: NSMenu, _ title: String, _ action: Selector, key: String = "") -> NSMenuItem {
+    private func addItem(to menu: NSMenu, _ title: String, _ action: Selector,
+                         key: String = "", icon: String? = nil) -> NSMenuItem {
         let item = NSMenuItem(title: title, action: action, keyEquivalent: key)
         item.target = self
+        if let icon { item.image = symbol(icon) }
         menu.addItem(item)
         return item
+    }
+
+    /// Monochrome SF Symbol that follows the menu's text color.
+    private func symbol(_ name: String) -> NSImage? {
+        let config = NSImage.SymbolConfiguration(pointSize: 13, weight: .regular)
+        let image = NSImage(systemSymbolName: name, accessibilityDescription: nil)?
+            .withSymbolConfiguration(config)
+        image?.isTemplate = true
+        return image
     }
 
     private func makeSliderItem() -> NSMenuItem {
         let width: CGFloat = 240, height: CGFloat = 46
         let view = NSView(frame: NSRect(x: 0, y: 0, width: width, height: height))
 
+        radiusIcon = NSImageView(frame: NSRect(x: 22, y: 25, width: 16, height: 17))
+        radiusIcon.image = symbol("ruler")
+        radiusIcon.contentTintColor = .labelColor
+        radiusIcon.imageScaling = .scaleProportionallyDown
+
         radiusLabel = NSTextField(labelWithString: "")
         radiusLabel.font = NSFont.menuFont(ofSize: 0)
-        radiusLabel.frame = NSRect(x: 20, y: 25, width: width - 40, height: 17)
+        radiusLabel.frame = NSRect(x: 44, y: 25, width: width - 60, height: 17)
 
         radiusSlider = NSSlider(value: Double(Settings.radius),
                                 minValue: Settings.minRadius, maxValue: Settings.maxRadius,
                                 target: self, action: #selector(radiusChanged(_:)))
         radiusSlider.isContinuous = true
-        radiusSlider.frame = NSRect(x: 18, y: 3, width: width - 36, height: 22)
+        radiusSlider.frame = NSRect(x: 42, y: 3, width: width - 58, height: 22)
 
+        view.addSubview(radiusIcon)
         view.addSubview(radiusLabel)
         view.addSubview(radiusSlider)
 
@@ -128,6 +146,7 @@ final class AppDelegate: NSObject, NSApplicationDelegate, NSMenuDelegate {
         radiusSlider.isEnabled = Settings.enabled
         radiusLabel.stringValue = L10n.radius(r)
         radiusLabel.textColor = Settings.enabled ? .labelColor : .disabledControlTextColor
+        radiusIcon.contentTintColor = radiusLabel.textColor
     }
 
     // MARK: - Actions

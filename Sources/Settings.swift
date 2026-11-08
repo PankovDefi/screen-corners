@@ -18,6 +18,7 @@ enum Settings {
             Key.topCorners: false,
             Key.allDisplays: false,
             Key.hideIcon: false,
+            Key.allowCapture: false,
         ])
     }
 
@@ -46,11 +47,18 @@ enum Settings {
         set { store.set(newValue, forKey: Key.hideIcon) }
     }
 
+    /// Show the corners in screenshots and screen recordings (off by default).
+    static var allowCapture: Bool {
+        get { store.bool(forKey: Key.allowCapture) }
+        set { store.set(newValue, forKey: Key.allowCapture) }
+    }
+
     private enum Key {
         static let enabled = "enabled"
         static let radius = "radius"
         static let topCorners = "topCorners"
         static let allDisplays = "allDisplays"
         static let hideIcon = "hideIcon"
+        static let allowCapture = "allowCapture"
     }
 }
